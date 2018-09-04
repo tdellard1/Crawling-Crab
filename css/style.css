@@ -1,0 +1,178 @@
+/* CSS Variables */
+:root {
+    --accent: rgb(231, 65, 25);
+    --primary: rgb(234, 212, 103);
+    --primarydark: rgb(135, 62, 13);
+    --secondary: rgb(235, 227, 208);
+}
+
+body {
+    background-color: #ddd;
+    font-family: 'Mukta', sans-serif;
+    margin: 0;
+    display: grid;
+    grid-template-areas: 
+    "landing"
+    "navigation"
+    "promo"
+    "menu"
+    "footer";
+    grid-template-rows: auto repeat(4, min-content);
+}
+
+#landing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: url(/res/Crawling\ Crab\ Logo.jpg);
+    background-position: 50% 25%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#landing > h1 {
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+}
+
+#info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: min-content min-content;
+    text-align: center;
+}
+
+#info > div {
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 0.8rem;
+}
+
+#info > div.vert {
+    font-family: 'Mukta', sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+}
+
+.vert {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent);
+}
+
+#address, #hours, #connect {
+    background-color: var(--secondary);
+}
+
+#info > #connect {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#navigation {
+    background-color: var(--accent);
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+#navigation > ul {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    margin: 0;
+    padding: 0;
+}
+
+#navigation > ul > li {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+#navigation a:link {
+    text-decoration: none;
+}
+
+#navigation a, #navigation li {
+    color: var(--primary);
+}
+
+#promo > h1, #menu > h1, #footer > h1 {
+    text-align: center;
+}
+
+#promopic {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 8px;
+    margin: 8px;
+}
+
+#promopic:hover > img {
+    filter: blur(2px);
+}
+
+#promopic img {
+    width: 100%;
+}
+
+#menuitems {
+    display: grid;
+    grid-template-rows: repeat(3, auto)
+}
+
+#stepone {
+    display: grid;
+    grid-template-rows: min-content auto;
+}
+
+#steponegrid {
+    display: grid;
+    grid-template-columns: 15% auto;
+}
+
+#steponegrid > h4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+
+#steponegrid > ul {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: min-content auto;
+}
+
+#steponegrid > ul > img {
+    width: 100%;
+}
+
+#steponegrid > ul > li {
+    list-style: none;
+    background-color: blueviolet;
+}
+
+.steps > h2 {
+    display: flex;
+    justify-content: center;
+}
+
+#steptwo {
+    display: grid;
+    grid-template-rows: min-content auto;
+}
+
+.fa-facebook {
+    color: rgb(59,89,152);
+}
+
+.fa-phone-square {
+    color: rgb(20, 238, 57);
+}
