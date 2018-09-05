@@ -1,8 +1,8 @@
-export default function Info(){
+export default function Info(state){
     return `
     <div id="info">
         <div class="vert">
-            <h3 class="vert">Address</h3>
+            <h3 class="vert">${state.title}</h3>
             </div>
             <div id="address">
                 <p>1671 El Tigre Terrace</p>

@@ -110,8 +110,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = Info;
-function Info() {
-    return "\n    <div id=\"info\">\n        <div class=\"vert\">\n            <h3 class=\"vert\">Address</h3>\n            </div>\n            <div id=\"address\">\n                <p>1671 El Tigre Terrace</p>\n                <p>St.Louis, MO 63138</p>\n            </div>\n            <div class=\"vert\">\n                <h3>Connect</h3>\n            </div>\n            \n            <div id=\"hours\">\n                <p>Closed until Thursday</p>\n                <p>Thursday - Sunday</p>\n                <p>2:00PM - 8:00PM</p>\n            </div>\n            <div class=\"vert\">\n                <h3>Hours Of Operation</h3>\n            </div>        \n            <div id=\"connect\">\n                <i class=\"fas fa-phone-square fa-5x\"></i>\n                <i class=\"fab fa-facebook fa-5x\"></i>\n            </div>\n        </div>\n            ";
+function Info(state) {
+    return "\n    <div id=\"info\">\n        <div class=\"vert\">\n            <h3 class=\"vert\">" + state.title + "</h3>\n            </div>\n            <div id=\"address\">\n                <p>1671 El Tigre Terrace</p>\n                <p>St.Louis, MO 63138</p>\n            </div>\n            <div class=\"vert\">\n                <h3>Connect</h3>\n            </div>\n            \n            <div id=\"hours\">\n                <p>Closed until Thursday</p>\n                <p>Thursday - Sunday</p>\n                <p>2:00PM - 8:00PM</p>\n            </div>\n            <div class=\"vert\">\n                <h3>Hours Of Operation</h3>\n            </div>        \n            <div id=\"connect\">\n                <i class=\"fas fa-phone-square fa-5x\"></i>\n                <i class=\"fab fa-facebook fa-5x\"></i>\n            </div>\n        </div>\n            ";
 }
 },{}],"components\\Navigation.js":[function(require,module,exports) {
 "use strict";
@@ -123,27 +123,63 @@ exports.default = Navigation;
 function Navigation() {
     return "\n    <div id=\"navigation\">\n        <ul>\n            <li><a href=\"#landing\">Home</a></li>\n            <li><a href=\"#promo\">Promo</a></li>\n            <li><a href=\"#menu\">Menu</a></li>\n            <li>Order</li>\n        </ul>\n    </div>\n        ";
 }
+},{}],"dist\\2promo.591a007e.jpg":[function(require,module,exports) {
+module.exports = "/2promo.591a007e.dbfe0ecb.jpg";
+},{}],"dist\\3promo.0cbbdff5.jpg":[function(require,module,exports) {
+module.exports = "/3promo.0cbbdff5.f83cd76b.jpg";
+},{}],"dist\\promo.ba90b7a4.jpg":[function(require,module,exports) {
+module.exports = "/promo.ba90b7a4.f084b91b.jpg";
 },{}],"components\\Promo.js":[function(require,module,exports) {
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = Promo;
+
+var _promo591a007e = require('../dist/2promo.591a007e.jpg');
+
+var _promo591a007e2 = _interopRequireDefault(_promo591a007e);
+
+var _promo0cbbdff = require('../dist/3promo.0cbbdff5.jpg');
+
+var _promo0cbbdff2 = _interopRequireDefault(_promo0cbbdff);
+
+var _promoBa90b7a = require('../dist/promo.ba90b7a4.jpg');
+
+var _promoBa90b7a2 = _interopRequireDefault(_promoBa90b7a);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function Promo() {
-    return "\n    <div id=\"promo\">\n        <h1>PROMO</h1>\n        <div id=\"promopic\">\n            <img src=\"res/promo.jpg\" alt=\"promo pic 1\">\n            <img src=\"/res/2promo.jpg\" alt=\"promo pic 1\">\n            <img src=\"./res/3promo.jpg\" alt=\"promo pic 2\">\n        </div>\n    </div>";
+    return '\n    <div id="promo">\n        <h1>PROMO</h1>\n        <div id="promopic">\n            <img src="' + _promo591a007e2.default + '" alt="promo pic 1">\n            <img src="' + _promo0cbbdff2.default + '" alt="promo pic 1">\n            <img src="' + _promoBa90b7a2.default + '" alt="promo pic 2">\n        </div>\n    </div>';
 }
+},{"../dist/2promo.591a007e.jpg":"dist\\2promo.591a007e.jpg","../dist/3promo.0cbbdff5.jpg":"dist\\3promo.0cbbdff5.jpg","../dist/promo.ba90b7a4.jpg":"dist\\promo.ba90b7a4.jpg"}],"dist\\seafood-mac.d8913992.jpg":[function(require,module,exports) {
+module.exports = "/seafood-mac.d8913992.0d342877.jpg";
+},{}],"dist\\menu.812f13a2.jpg":[function(require,module,exports) {
+module.exports = "/menu.812f13a2.9fe44a7b.jpg";
 },{}],"components\\Menu.js":[function(require,module,exports) {
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = Menu;
+
+var _seafoodMacD = require('../dist/seafood-mac.d8913992.jpg');
+
+var _seafoodMacD2 = _interopRequireDefault(_seafoodMacD);
+
+var _menu812f13a = require('../dist/menu.812f13a2.jpg');
+
+var _menu812f13a2 = _interopRequireDefault(_menu812f13a);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function Menu() {
-    return "\n    <div id=\"menu\">\n        <h1>MENU</h1>\n        <div id=\"menuitems\">\n            <div id=\"stepone\" class=\"steps\">\n                <h2>Step One - Select Your Side</h2>\n                <div id=\"steponegrid\">\n                    <h4>Sides:</h4>\n                    <ul>\n                        <li>Sweet Corn</li>\n                        <li>Sausage Chunks</li>\n                        <li>Hand Cut Potatoes</li>\n                        <li>Cajin Boiled Eggs</li>\n                        <img src=\"/res/seafood-mac.jpg\" alt=\"Mac\">\n                        <img src=\"/res/seafood-mac.jpg\" alt=\"Mac\">\n                        <img src=\"/res/seafood-mac.jpg\" alt=\"Mac\">\n                        <img src=\"/res/seafood-mac.jpg\" alt=\"Mac\">\n                    </ul>\n                </div>\n            </div>\n            <div id=\"steptwo\" class=\"steps\">\n                <h2>Step Two - Select Your Meat</h2>\n                <ul>\n                    <li>Jumbo Shrimp</li>\n                    <li>Crab Leg Cluster</li>\n                </ul>\n                <div id=\"steptwogrid\">\n                    <img src=\"/res/seafood-mac.jpg\" alt=\"Mac\">\n                    <img src=\"/res/seafood-mac.jpg\" alt=\"Mac\">\n                </div>        \n            </div>\n            <div id=\"appetizers\" class=\"steps\">\n                <h2>Add An Appetizer</h2>\n            </div>\n        </div>\n        <div id=\"menupic\">\n            <img src=\"./res/menu.jpg\" alt=\"menu\">\n        </div>\n    </div>";
+    return '\n    <div id="menu">\n        <h1>MENU</h1>\n        <div id="menuitems">\n            <div id="stepone" class="steps">\n                <h2>Step One - Select Your Side</h2>\n                <div id="steponegrid">\n                    <h4>Sides:</h4>\n                    <ul>\n                        <li>Sweet Corn</li>\n                        <li>Sausage Chunks</li>\n                        <li>Hand Cut Potatoes</li>\n                        <li>Cajin Boiled Eggs</li>\n                        <img src="' + _seafoodMacD2.default + '" alt="Mac">\n                        <img src="' + _seafoodMacD2.default + '" alt="Mac">\n                        <img src="' + _seafoodMacD2.default + '" alt="Mac">\n                        <img src="' + _seafoodMacD2.default + '" alt="Mac">\n                    </ul>\n                </div>\n            </div>\n            <div id="steptwo" class="steps">\n                <h2>Step Two - Select Your Meat</h2>\n                <ul>\n                    <li>Jumbo Shrimp</li>\n                    <li>Crab Leg Cluster</li>\n                </ul>\n                <div id="steptwogrid">\n                    <img src="' + _seafoodMacD2.default + '" alt="Mac">\n                    <img src="' + _seafoodMacD2.default + '" alt="Mac">\n                </div>        \n            </div>\n            <div id="appetizers" class="steps">\n                <h2>Add An Appetizer</h2>\n            </div>\n        </div>\n        <div id="menupic">\n            <img src="' + _menu812f13a2.default + '" alt="menu">\n        </div>\n    </div>';
 }
-},{}],"components\\Footer.js":[function(require,module,exports) {
+},{"../dist/seafood-mac.d8913992.jpg":"dist\\seafood-mac.d8913992.jpg","../dist/menu.812f13a2.jpg":"dist\\menu.812f13a2.jpg"}],"components\\Footer.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -192,7 +228,46 @@ var _Landing2 = _interopRequireDefault(_Landing);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-document.querySelector('#root').innerHTML = '\n    ' + (0, _Landing2.default)() + '\n    ' + (0, _Info2.default)() + '\n    ' + (0, _Navigation2.default)() + '\n    ' + (0, _Promo2.default)() + '\n    ' + (0, _Menu2.default)() + '\n    ' + (0, _Footer2.default)() + '\n    ';
+var State = {
+    'active': 'Home',
+    'Home': {
+        'title': 'Welcome To The Home Page'
+    },
+    'Promo': {
+        'title': 'Welcome To The Promo Page'
+    },
+    'Menu': {
+        'title': 'Welcome To The Menu Page'
+    },
+    'contact': {
+        'title': 'Welcome To The Contact Page'
+    }
+};
+
+var root = document.querySelector('#root');
+
+function handleNavigation(event) {
+    var newState = State;
+
+    newState.active = event.target.textContent;
+    event.preventDefault();
+    render(newState);
+}
+
+function render(state) {
+
+    root.innerHTML = '\n    ' + (0, _Landing2.default)() + '\n    ' + (0, _Info2.default)(state[state.active]) + '\n    ' + (0, _Navigation2.default)() + '\n    ' + (0, _Promo2.default)() + '\n    ' + (0, _Menu2.default)() + '\n    ' + (0, _Footer2.default)() + '\n    ';
+
+    var links = document.querySelectorAll('#navigation a');
+
+    links[0].addEventListener('click', handleNavigation);
+
+    links[1].addEventListener('click', handleNavigation);
+
+    links[2].addEventListener('click', handleNavigation);
+}
+
+render(State);
 },{"./components/Info":"components\\Info.js","./components/Navigation":"components\\Navigation.js","./components/Promo":"components\\Promo.js","./components/Menu":"components\\Menu.js","./components/Footer":"components\\Footer.js","./components/Landing":"components\\Landing.js"}],"..\\..\\..\\..\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -222,7 +297,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '54527' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '59559' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

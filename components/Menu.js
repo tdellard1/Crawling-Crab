@@ -1,3 +1,6 @@
+import mac from '../dist/seafood-mac.d8913992.jpg';
+import menu from '../dist/menu.812f13a2.jpg';
+
 export default function Menu(){
     return `
     <div id="menu">
@@ -12,10 +15,10 @@ export default function Menu(){
                         <li>Sausage Chunks</li>
                         <li>Hand Cut Potatoes</li>
                         <li>Cajin Boiled Eggs</li>
-                        <img src="/res/seafood-mac.jpg" alt="Mac">
-                        <img src="/res/seafood-mac.jpg" alt="Mac">
-                        <img src="/res/seafood-mac.jpg" alt="Mac">
-                        <img src="/res/seafood-mac.jpg" alt="Mac">
+                        <img src="${mac}" alt="Mac">
+                        <img src="${mac}" alt="Mac">
+                        <img src="${mac}" alt="Mac">
+                        <img src="${mac}" alt="Mac">
                     </ul>
                 </div>
             </div>
@@ -26,8 +29,8 @@ export default function Menu(){
                     <li>Crab Leg Cluster</li>
                 </ul>
                 <div id="steptwogrid">
-                    <img src="/res/seafood-mac.jpg" alt="Mac">
-                    <img src="/res/seafood-mac.jpg" alt="Mac">
+                    <img src="${mac}" alt="Mac">
+                    <img src="${mac}" alt="Mac">
                 </div>        
             </div>
             <div id="appetizers" class="steps">
@@ -35,7 +38,7 @@ export default function Menu(){
             </div>
         </div>
         <div id="menupic">
-            <img src="./res/menu.jpg" alt="menu">
+            <img src="${menu}" alt="menu">
         </div>
     </div>`;
 }

@@ -1,0 +1,29 @@
+{
+  "name": "food",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel build index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdellard1/food.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tdellard1/food/issues"
+  },
+  "homepage": "https://github.com/tdellard1/food#readme",
+  "devDependencies": {
+    "cssnano": "^4.1.0",
+    "eslint": "^5.3.0"
+ 
+  },
+  "dependencies": {
+    "parcel": "1.9.7"
+  }
+}
