@@ -33,7 +33,8 @@ function handleNavigation(event){
 }
 
 function render(state){
-    
+    var links;
+
     root
         .innerHTML =     `
     ${Landing()}
@@ -44,27 +45,15 @@ function render(state){
     ${Footer()}
     `;
 
-    var links = document.querySelectorAll('#navigation a');
+    links = document.querySelectorAll('#navigation a');
 
-    links[0]
-        .addEventListener(
-            'click',
-            handleNavigation
-        );
-
-    links[1]
-        .addEventListener(
-            'click',
-            handleNavigation
-        
-        );
-
-    links[2]
-        .addEventListener(
-            'click',
-            handleNavigation
-        );
-
+    for(let i = 0;i < links.length; i++){
+        links[i]
+            .addEventListener(
+                'click',
+                handleNavigation
+            );
+    }
 }
 
 render(State);

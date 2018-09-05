@@ -255,16 +255,15 @@ function handleNavigation(event) {
 }
 
 function render(state) {
+    var links;
 
     root.innerHTML = '\n    ' + (0, _Landing2.default)() + '\n    ' + (0, _Info2.default)(state[state.active]) + '\n    ' + (0, _Navigation2.default)() + '\n    ' + (0, _Promo2.default)() + '\n    ' + (0, _Menu2.default)() + '\n    ' + (0, _Footer2.default)() + '\n    ';
 
-    var links = document.querySelectorAll('#navigation a');
+    links = document.querySelectorAll('#navigation a');
 
-    links[0].addEventListener('click', handleNavigation);
-
-    links[1].addEventListener('click', handleNavigation);
-
-    links[2].addEventListener('click', handleNavigation);
+    for (var i = 0; i < links.length; i++) {
+        links[i].addEventListener('click', handleNavigation);
+    }
 }
 
 render(State);
@@ -297,7 +296,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '59559' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '55048' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
