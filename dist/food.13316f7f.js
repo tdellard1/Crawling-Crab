@@ -114,14 +114,25 @@ function Info(state) {
     return "\n    <div id=\"info\">\n        <div class=\"vert\">\n            <h3 class=\"vert\">" + state.title + "</h3>\n            </div>\n            <div id=\"address\">\n                <p>1671 El Tigre Terrace</p>\n                <p>St.Louis, MO 63138</p>\n            </div>\n            <div class=\"vert\">\n                <h3>Connect</h3>\n            </div>\n            \n            <div id=\"hours\">\n                <p>Closed until Thursday</p>\n                <p>Thursday - Sunday</p>\n                <p>2:00PM - 8:00PM</p>\n            </div>\n            <div class=\"vert\">\n                <h3>Hours Of Operation</h3>\n            </div>        \n            <div id=\"connect\">\n                <i class=\"fas fa-phone-square fa-5x\"></i>\n                <i class=\"fab fa-facebook fa-5x\"></i>\n            </div>\n        </div>\n            ";
 }
 },{}],"components\\Navigation.js":[function(require,module,exports) {
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = Navigation;
-function Navigation() {
-    return "\n    <div id=\"navigation\">\n        <ul>\n            <li><a href=\"#landing\">Home</a></li>\n            <li><a href=\"#promo\">Promo</a></li>\n            <li><a href=\"#menu\">Menu</a></li>\n            <li>Order</li>\n        </ul>\n    </div>\n        ";
+
+function Link(link) {
+    return '\n    <li><a href="/' + link + '">' + link + '</a></li>\n    ';
+}
+
+function Navigation(state) {
+    var links = '';
+
+    for (var i = 0; i < state.links.length; i++) {
+        links += Link(state.links[i]);
+    }
+
+    return '\n    <div id="navigation">\n        <ul>\n            ' + links + '\n        </ul>\n    </div>\n        ';
 }
 },{}],"dist\\2promo.591a007e.jpg":[function(require,module,exports) {
 module.exports = "/2promo.591a007e.dbfe0ecb.jpg";
@@ -231,15 +242,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var State = {
     'active': 'Home',
     'Home': {
+        'links': ['Promo', 'Menu', 'Contacts'],
         'title': 'Welcome To The Home Page'
     },
     'Promo': {
+        'links': ['Home', 'Menu', 'Contacts'],
         'title': 'Welcome To The Promo Page'
     },
     'Menu': {
+        'links': ['Home', 'Promo', 'Contacts'],
         'title': 'Welcome To The Menu Page'
     },
     'contact': {
+        'links': ['Home', 'Promo', 'Menu', 'Contacts'],
         'title': 'Welcome To The Contact Page'
     }
 };
@@ -251,13 +266,13 @@ function handleNavigation(event) {
 
     newState.active = event.target.textContent;
     event.preventDefault();
-    render(newState);
+    render(newState); // eslint-disable-line
 }
 
 function render(state) {
     var links;
 
-    root.innerHTML = '\n    ' + (0, _Landing2.default)() + '\n    ' + (0, _Info2.default)(state[state.active]) + '\n    ' + (0, _Navigation2.default)() + '\n    ' + (0, _Promo2.default)() + '\n    ' + (0, _Menu2.default)() + '\n    ' + (0, _Footer2.default)() + '\n    ';
+    root.innerHTML = '\n    ' + (0, _Landing2.default)() + '\n    ' + (0, _Info2.default)(state[state.active]) + '\n    ' + (0, _Navigation2.default)(state[state.active]) + '\n    ' + (0, _Promo2.default)() + '\n    ' + (0, _Menu2.default)() + '\n    ' + (0, _Footer2.default)() + '\n    ';
 
     links = document.querySelectorAll('#navigation a');
 
@@ -296,7 +311,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '55048' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '53837' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

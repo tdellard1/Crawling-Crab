@@ -1,11 +1,21 @@
-export default function Navigation(){
+
+function Link(link){
+    return `
+    <li><a href="/${link}">${link}</a></li>
+    `;
+}
+
+export default function Navigation(state){
+    var links = '';
+
+    for(let i = 0; i < state.links.length; i++){
+        links += Link(state.links[i]);
+    }
+    
     return `
     <div id="navigation">
         <ul>
-            <li><a href="#landing">Home</a></li>
-            <li><a href="#promo">Promo</a></li>
-            <li><a href="#menu">Menu</a></li>
-            <li>Order</li>
+            ${links}
         </ul>
     </div>
         `;

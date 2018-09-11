@@ -8,15 +8,19 @@ import Landing from './components/Landing';
 var State = {
     'active': 'Home',
     'Home': {
+        'links': [ 'Promo', 'Menu', 'Contacts' ],
         'title': 'Welcome To The Home Page'
     },
     'Promo': {
+        'links': [ 'Home', 'Menu', 'Contacts' ],
         'title': 'Welcome To The Promo Page'
     },
     'Menu': {
+        'links': [ 'Home', 'Promo', 'Contacts' ],
         'title': 'Welcome To The Menu Page'
     },
     'contact': {
+        'links': [ 'Home', 'Promo', 'Menu', 'Contacts' ],
         'title': 'Welcome To The Contact Page'
     }
 };
@@ -29,7 +33,7 @@ function handleNavigation(event){
 
     newState.active = event.target.textContent;
     event.preventDefault();
-    render(newState);
+    render(newState); // eslint-disable-line
 }
 
 function render(state){
@@ -39,7 +43,7 @@ function render(state){
         .innerHTML =     `
     ${Landing()}
     ${Info(state[state.active])}
-    ${Navigation()}
+    ${Navigation(state[state.active])}
     ${Promo()}
     ${Menu()}
     ${Footer()}
