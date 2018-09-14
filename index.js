@@ -1,65 +1,41 @@
-import Info from './components/Info';
+import Axios from 'axios';
+import Navigo from 'navigo';
 import Navigation from './components/Navigation';
-import Promo from './components/Promo';
-import Menu from './components/Menu';
 import Footer from './components/Footer';
 import Landing from './components/Landing';
+import Content from './components/Content';
+import * as State from './store';
 
-var State = {
-    'active': 'Home',
-    'Home': {
-        'links': [ 'Promo', 'Menu', 'Contacts' ],
-        'title': 'Welcome To The Home Page'
-    },
-    'Promo': {
-        'links': [ 'Home', 'Menu', 'Contacts' ],
-        'title': 'Welcome To The Promo Page'
-    },
-    'Menu': {
-        'links': [ 'Home', 'Promo', 'Contacts' ],
-        'title': 'Welcome To The Menu Page'
-    },
-    'contact': {
-        'links': [ 'Home', 'Promo', 'Menu', 'Contacts' ],
-        'title': 'Welcome To The Contact Page'
-    }
-};
+var root = document.querySelector('#root');
+var router = new Navigo(window.location.origin);
+var newState = Object.assign({}, State);
 
-var root = document
-    .querySelector('#root');
-
-function handleNavigation(event){
-    var newState = State;
-
-    newState.active = event.target.textContent;
-    event.preventDefault();
+function handleNavigation(activePage){
+    newState.active = activePage;
     render(newState); // eslint-disable-line
 }
 
 function render(state){
-    var links;
-
     root
         .innerHTML =     `
     ${Landing()}
-    ${Info(state[state.active])}
     ${Navigation(state[state.active])}
-    ${Promo()}
-    ${Menu()}
+    ${Content(state)}
     ${Footer()}
     `;
 
-    links = document.querySelectorAll('#navigation a');
-
-    for(let i = 0;i < links.length; i++){
-        links[i]
-            .addEventListener(
-                'click',
-                handleNavigation
-            );
-    }
+    router.updatePageLinks();
 }
 
-render(State);
+router
+    .on('/:page', (params) => handleNavigation(params.page))
+    .on('/', () => handleNavigation('info'))
+    .resolve();
 
+Axios
+    .get('https://jsonplaceholder.typicode.com/posts')
+    .then((response) => {
+        newState.posts = response.data;
 
+        render(newState);
+    });
