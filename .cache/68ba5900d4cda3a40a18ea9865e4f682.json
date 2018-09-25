@@ -1,1 +1,1 @@
-{"id":"res\\2promo.jpg","dependencies":[],"generated":{"js":"module.exports = \"/7dc5d31469b181631f6626ef591a007e.jpg\";"},"hash":"80767fdcfdb692a3510188e2b08c38b5","cacheData":{"env":{}}}
+{"id":"res\\2promo.jpg","dependencies":[{"name":"C:\\Users\\Travis\\Desktop\\Code\\SavvyCoders\\food\\package.json","includedInParent":true,"mtime":1537839654870}],"generated":{"js":"module.exports = \"/7dc5d31469b181631f6626ef591a007e.jpg\";"},"hash":"80767fdcfdb692a3510188e2b08c38b5","cacheData":{"env":{}}}

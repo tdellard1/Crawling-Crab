@@ -28,8 +28,8 @@ import Post from '../Post';
     </div>
         `; */
 
-export default function Info(posts){
-    return posts
+export default function Info(state){
+    return state.posts
         .map(Post)
         .join('');
 }
