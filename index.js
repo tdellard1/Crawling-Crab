@@ -44,6 +44,16 @@ router
     }); */
 
 Axios
+    .get('https://api.openweathermap.org/data/2.5/weather?zip=63136&appid=aefc8d1800b244fe656e6e67b33be8e0')
+    .then((response) => {
+        store.dispatch((state) => {
+            state.weather = response.data;
+
+            return state;
+        });
+    });
+
+Axios
     .get('https://api.github.com/users/tdellard1/repos', {
         'headers': {
             'Authorization': `token ${process.env.GITHUB_API_KEY}` // eslint-disable-line

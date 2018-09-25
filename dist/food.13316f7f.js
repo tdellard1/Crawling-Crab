@@ -36648,7 +36648,7 @@ router.on('/:page', function (params) {
         store.dispatch((state) => Object.assign(state, { 'posts': response.data }));
     }); */
 
-_axios2.default.get('http://api.openweathermap.org/data/2.5/weather?zip=63136&appid=aefc8d1800b244fe656e6e67b33be8e0').then(function (response) {
+_axios2.default.get('https://api.openweathermap.org/data/2.5/weather?zip=63136&appid=aefc8d1800b244fe656e6e67b33be8e0').then(function (response) {
     _store2.default.dispatch(function (state) {
         state.weather = response.data;
 
@@ -36658,7 +36658,7 @@ _axios2.default.get('http://api.openweathermap.org/data/2.5/weather?zip=63136&ap
 
 _axios2.default.get('https://api.github.com/users/tdellard1/repos', {
     'headers': {
-        'Authorization': 'token ' + 'ad6c63c701ccfa9a38cea6b8460f8ee61ecf17cd' // eslint-disable-line
+        'Authorization': 'token ' + 'dd2241e6c43b7284954aa04690afec3cc76d5344' // eslint-disable-line
     }
 }).then(function (response) {
     _store2.default.dispatch(function (state) {
@@ -36698,7 +36698,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '60963' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '62872' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
