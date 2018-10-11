@@ -1,8 +1,6 @@
-import Weather from './Weather';
-
-export default function Footer(state){
+export default function Footer(){
     return `
     <div id="footer">
-        <h1>${Weather(state.weather)}</h1>
+        <h1>Footer</h1>
     </div>`;
 }

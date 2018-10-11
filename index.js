@@ -6,8 +6,8 @@ import Landing from './components/Landing';
 import Content from './components/Content';
 import store from './store/store';
 import Greeter from './js/Greeter';
+import Order from './js/Order';
 
-var apikey = '93467ea10e1eca651b5d5a68b5749422f4ab22f0';
 var root = document.querySelector('#root');
 var router = new Navigo(window.location.origin);
 var greeter = new Greeter(store.dispatch.bind(store));
@@ -15,13 +15,18 @@ var greeter = new Greeter(store.dispatch.bind(store));
 
 function render(){
     var state = store.getState();
+    var order;
     
     root.innerHTML = `
     ${Landing()}
     ${Navigation(state[state.active])}
     ${Content(state)}
-    ${Footer(state)}
+    ${Footer()}
     `;
+    
+    if(state.active === 'order'){
+        order = new Order(root);
+    }
     
     greeter.render(root);
     
@@ -37,11 +42,6 @@ router
     .on('/', () => handleNavigation('info'))
     .resolve();
 
-/* Axios
-    .get('https://api.savvycoders.com/books')
-    .then((response) => {
-        store.dispatch((state) => Object.assign(state, { 'posts': response.data }));
-    }); */
 
 Axios
     .get('https://api.openweathermap.org/data/2.5/weather?zip=63136&appid=aefc8d1800b244fe656e6e67b33be8e0')
@@ -53,18 +53,9 @@ Axios
         });
     });
 
-Axios
-    .get('https://api.github.com/users/tdellard1/repos', {
-        'headers': {
-            'Authorization': `token ${process.env.GITHUB_API_KEY}` // eslint-disable-line
-        }
-    })
-    .then((response) => {
-        store.dispatch((state) => {
-            state.repos = response.data;
+/* Axios
+    .get('https://radiant-plateau-57525.herokuapp.com/greeting?name=Travis')
+    .then((response) => console.log(response.data)); */
 
-            return state;
-        });
-    });
 
 store.addListener(render);

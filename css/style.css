@@ -6,6 +6,10 @@
     --secondary: rgb(235, 227, 208);
 }
 
+body {
+    margin: 0px;
+}
+
 #root {
     background-color: #ddd;
     font-family: 'Mukta', sans-serif;
@@ -205,4 +209,64 @@
 
 .fa-phone-square {
     color: rgb(20, 238, 57);
+}
+
+strong {
+    transition: 0.65s font-size ease, 0.50s opacity ease;
+    opacity: 0.1;
+}
+
+strong:hover {
+    opacity: 1;
+}
+
+
+#meat-volume, #sauce-selections {
+    background-color: #ddd;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+}
+
+.meat-volume-divs, .sauce-divs, .meat-selection-divs {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+}
+
+img {
+    height: 200px;
+    width: 200px;
+}
+
+#meat-selections {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+#order {
+    margin: 16px;
+}
+
+#order-component {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'current-order' 'order';
+} 
+
+.meal-order {
+    border: 1px solid black;
+    padding: 0px 8px;
+}
+.meal-order p,
+.meal-order h4 {
+    display: inline;
+    margin: 0;
 }
