@@ -17,6 +17,7 @@ export default function Navigation(state){
 
     return `
     <div id="navigation">
+        <i class="fas fa-bars"></i> 
         <ul>
             ${links}
         </ul>

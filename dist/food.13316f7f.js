@@ -19017,7 +19017,7 @@ function Link(link) {
 function Navigation(state) {
     var links = state.links.map(Link).join('');
 
-    return '\n    <div id="navigation">\n        <ul>\n            ' + links + '\n        </ul>\n    </div>\n        ';
+    return '\n    <div id="navigation">\n        <i class="fas fa-bars"></i> \n        <ul>\n            ' + links + '\n        </ul>\n    </div>\n        ';
 }
 },{}],"components\\Footer.js":[function(require,module,exports) {
 "use strict";
@@ -19027,17 +19027,29 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Footer;
 function Footer() {
-    return "\n    <div id=\"footer\">\n        <h1>Footer</h1>\n    </div>";
+    return "\n    <div id=\"footer\">\n        <div id=\"footer-bottom\">\n            <p>&#169; Crawling Crab LLC. All Rights Reserved</p>\n            <div>\n                <p><a href=\"#\">Contact Us</a>&nbsp|</p>\n                <p>&nbsp<a href=\"#\">Terms & Conditions</a>&nbsp|</p>\n                <p>&nbsp<a href=\"#\">Privacy</a></p>\n            </div>\n        </div>\n        \n    </div>";
 }
 },{}],"components\\Landing.js":[function(require,module,exports) {
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = Landing;
-function Landing() {
-    return "\n    <div id=\"landing\">\n    </div>";
+function Landing(state) {
+    /* var Up = setInterval(moveUp, 1000);
+      function moveDown(){
+        document.querySelector('#landing > a').style.bottom = '0%';
+        Up = setInterval(moveUp, 1000);
+    }
+      function moveUp(){
+        document.querySelector('#landing > a').style.bottom = '5%';
+        setTimeout(moveDown, 2000);
+    } */
+
+    if (state.active == 'info') {
+        return '\n            <div id="landing">\n                <a href="#hours"><i class=\'fas fa-arrow-down fa-2x\'></i></a> \n            </div>';
+    }
 }
 },{}],"res\\2promo.jpg":[function(require,module,exports) {
 module.exports = "/2promo.591a007e.jpg";
@@ -19068,7 +19080,7 @@ var _promo6 = _interopRequireDefault(_promo5);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Promo(state) {
-    return '\n    <div id="promo">\n        <h1>PROMO</h1>\n        <div id="promopic">\n            <img src="' + _promo2.default + '" alt="promo pic 1">\n            <img src="' + _promo4.default + '" alt="promo pic 1">\n            <img src="' + _promo6.default + '" alt="promo pic 2">\n        </div>\n    </div>';
+    return '\n    <div id="promo">\n    </div>';
 }
 },{"../../res/2promo.jpg":"res\\2promo.jpg","../../res/3promo.jpg":"res\\3promo.jpg","../../res/4promo.jpg":"res\\4promo.jpg"}],"dist\\seafood-mac.d8913992.jpg":[function(require,module,exports) {
 module.exports = "/seafood-mac.d8913992.0d342877.jpg";
@@ -19096,14 +19108,41 @@ function Menu() {
     return '\n    <div id="menu">\n    <h1>MENU</h1>\n    <div id="menuitems">\n        <div id="stepone" class="steps">\n            <h2>Step One - Select Your Side</h2>\n            <div id="steponegrid">\n                <h4>Sides:</h4>\n                <ul>\n                    <li>Sweet Corn</li>\n                    <li>Sausage Chunks</li>\n                    <li>Hand Cut Potatoes</li>\n                    <li>Cajin Boiled Eggs</li>\n                    <img src="' + _seafoodMacD2.default + '" alt="Mac">\n                    <img src="' + _seafoodMacD2.default + '" alt="Mac">\n                    <img src="' + _seafoodMacD2.default + '" alt="Mac">\n                    <img src="' + _seafoodMacD2.default + '" alt="Mac">\n                </ul>\n            </div>\n        </div>\n        <div id="steptwo" class="steps">\n            <h2>Step Two - Select Your Meat</h2>\n            <ul>\n                <li>Jumbo Shrimp</li>\n                <li>Crab Leg Cluster</li>\n            </ul>\n            <div id="steptwogrid">\n                <img src="' + _seafoodMacD2.default + '" alt="Mac">\n                <img src="' + _seafoodMacD2.default + '" alt="Mac">\n            </div>        \n        </div>\n        <div id="appetizers" class="steps">\n            <h2>Add An Appetizer</h2>\n        </div>\n    </div>\n    <div id="menupic">\n        <img src="' + _menu812f13a2.default + '" alt="menu">\n    </div>\n</div>';
 }
 },{"../../dist/seafood-mac.d8913992.jpg":"dist\\seafood-mac.d8913992.jpg","../../dist/menu.812f13a2.jpg":"dist\\menu.812f13a2.jpg"}],"components\\Pages\\Info.js":[function(require,module,exports) {
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = Info;
 function Info(state) {
-    return "\n    <div id=\"info\">\n        <div class=\"vert\">\n            <h3 class=\"vert\">LOL</h3>\n            </div>\n            <div id=\"address\">\n                <p>1671 El Tigre Terrace</p>\n                <p>St.Louis, MO 63138</p>\n            </div>\n            <div class=\"vert\">\n                <h3>Connect</h3>\n            </div>\n            \n            <div id=\"hours\">\n                <p>Closed until Thursday</p>\n                <p>Thursday - Sunday</p>\n                <p>2:00PM - 8:00PM</p>\n            </div>\n            <div class=\"vert\">\n                <h3>Hours Of Operation</h3>\n            </div>\n            <div id=\"connect\">\n                <i class=\"fas fa-phone-square fa-5x\"></i>\n                <i class=\"fab fa-facebook fa-5x\"></i>\n            </div>\n        </div>\n            ";
+    var now = new Date();
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var day = days[now.getDay()];
+    var hour = now.getTime();
+    var currentHours = '';
+
+    function hoursofOperation() {
+        switch (day) {
+            case 'Monday':
+            case 'Thursday':
+            case 'Friday':
+            case 'Saturday':
+            case 'Sunday':
+                if (hour >= 14 && hour < 22) {
+                    currentHours = 'Currently Open';
+                } else {
+                    currentHours = 'Currently Closed';
+                }
+                break;
+            default:
+                currentHours = 'Currently Closed';
+                break;
+        }
+    }
+
+    hoursofOperation();
+
+    return '\n    <div id="info">\n        <div id="hours">\n            <div id=\'hor\'>\n                <h1>Hours Of Operation</h1>\n                <p>' + currentHours + '</p>\n            </div>\n            <div id=\'hours-list\'>\n                <div class="hours-detail">\n                    <h3>Monday</h3>\n                    <h6>2pm-8pm</h6>\n                </div>\n                <div class="hours-detail">\n                    <h3>EO Tuesday</h3>\n                    <h6>2pm-8pm</h6>\n                </div>\n                <div class="hours-detail">\n                    <h3>Thurs-Sun</h3>\n                    <h6>2pm-9pm</h5>\n                </div>\n            </div>\n        </div>\n        <div id="maps"></div>\n\n        <div id="promo">\n            <div id="promotion">\n                <p>-Signature-</p>\n                <h1>Seafood Plat<span>ter</span></h1>\n                <h4><i>Topped with Magic Dust & Garlic Butter</i></h4>\n            </div>\n        </div>\n            ';
 }
 },{}],"components\\Pages\\Order.js":[function(require,module,exports) {
 "use strict";
@@ -19112,8 +19151,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = Order;
-function Order(state) {
-    return " \n    <div id='order-component'>\n        <div id=\"current-order\">\n            <h1></h1>\n            <div id=\"meal-list\">\n                <div class=\"meal-order\">\n                    <p>Meal Type:</p><h4>1 Meat $25</h4><br>\n                    <p>Meat Selections:</p><h4>Lobster Tail</h4><br>\n                    <p>Sauce Selections:</p><h4>Garlic Butter</h4>\n                </div>\n            </div>\n            <button>Order</button>\n        </div>\n        <div id=\"order\">\n            <form action=\"/order/ajax\" method=\"post\" id=\"form\">\n                <div id=\"header\">\n                    <h1>Order:</h1>\n                    <i class=\"fas fa-cart-plus fa-2x\"></i>\n                </div>\n                <h4>Select Order Size: </h4>\n                <div id=\"meat-volume\">\n                    <div id=\"meat-volume-1\" class=\"meat-volume-divs\">\n                        \n                        <p>1 Meat $25</p>\n                        <input type=\"radio\" id=\"meatnum-1\" name=\"meatnum\" value=\"1\" hidden>\n                    </div>\n                    <div id=\"meat-volume-2\" class=\"meat-volume-divs\">\n                        \n                        <p>2 Meats $40</p>\n                        <input type=\"radio\" id=\"meatnum-2\" name=\"meatnum\" value=\"2\" hidden>\n                    </div>\n                    <div id=\"meat-volume-3\" class=\"meat-volume-divs\">\n                        \n                        <p>3 Meats $55</p>\n                        <input type=\"radio\" id=\"meatnum-3\" name=\"meatnum\" value=\"3\" hidden>\n                    </div>\n                </div>\n                <h4>Select Your Meat:</h4>\n\n\n\n                <div id=\"meat-selections\">\n                    <div id=\"meat-selection-1\" class=\"meat-selection-divs\">\n                        <P>Garlic Crab Cluster</P>\n                        <input id=\"meat-sel-1\" class=\"meat-selections-checkbox\" type=\"checkbox\" name=\"meat\" value=\"Crab\" hidden>\n                    </div>\n                    <div id=\"meat-selection-2\" class=\"meat-selection-divs\">\n                        <P>Lobster Tail</P>\n                        <input id=\"meat-sel-2\" class=\"meat-selections-checkbox\" type=\"checkbox\" name=\"meat\" value=\"Lobster\" hidden>\n                    </div>\n                    <div id=\"meat-selection-3\" class=\"meat-selection-divs\">\n                        <p>1lb Shrimp</p>\n                        <input id=\"meat-sel-3\" class=\"meat-selections-checkbox\" type=\"checkbox\" name=\"meat\" value=\"Shrimp\" hidden>\n                    </div>\n                    <div id=\"meat-selection-4\" class=\"meat-selection-divs\">\n                        <P>1lb CrawFish</P>\n                        <input id=\"meat-sel-4\" class=\"meat-selections-checkbox\" type=\"checkbox\" name=\"meat\" value=\"CrawFish\" hidden>\n                    </div>\n                </div>\n\n\n\n\n                <h4>Select Your Sauce:</h4>\n                <div id=\"sauce-selections\">\n                    <div id=\"sauce-1\" class=\"sauce-divs\">\n                        <p>Lemon Garlic $5</p>\n                        <input type=\"radio\" id=\"sauce-selection-1\" name=\"sauce\" value=\"lemongarlic\" hidden>\n                    </div>\n                    <div id=\"sauce-2\" class=\"sauce-divs\">\n                        <p>Garlic Butter</p>\n                        <input type=\"radio\" id=\"sauce-selection-2\" name=\"sauce\" value=\"garlicbutter\" hidden>\n                    </div>\n                    <div id=\"sauce-3\" class=\"sauce-divs\">\n                        <p>Hot n Spicy $1</p>\n                        <input type=\"radio\" id=\"sauce-selection-3\" name=\"sauce\" value=\"hotspicy\" hidden>\n                    </div>\n                </div>\n\n\n\n                <!--<h4>Pick Your Sides:</h4>\n                <div id=\"sides\">\n                    <input type=\"radio\" name=\"sides\" value=\"egg\">Cajun Boiled Eggs <br>\n                    <input type=\"radio\" name=\"sides\" value=\"corn\">Sweet Corn <br>\n                    <input type=\"radio\" name=\"sides\" value=\"sausage\">2 Sausage Chunks <br>\n                    <input type=\"radio\" name=\"sides\" value=\"potato\">Hand Cut Potatoes <br>\n                </div>\n\n\n\n\n                <h4>Select Addons:</h4>\n                <div id=\"addons\">\n                    <input type=\"checkbox\" id=\"addons-1\" name=\"addons\" value=\"shrimp\">6 Jumbo Shrimp - $5 <br>\n                    <input type=\"checkbox\" id=\"addons-2\" name=\"addons\" value=\"corn\">Corn - $1 <br>\n                    <input type=\"checkbox\" id=\"addons-3\" name=\"addons\" value=\"cheese\">Cheese - $1.50 <br>\n                    <input type=\"checkbox\" id=\"addons-4\" name=\"addons\" value=\"crab\">Blue Garlic Crab - $5 Each <br>\n                    <input type=\"checkbox\" id=\"addons-5\" name=\"addons\" value=\"sas\">SAS - $1 <br>\n                    <input type=\"checkbox\" id=\"addons-6\" name=\"addons\" value=\"egg\">Eggs - $1 <br>\n                    <input type=\"checkbox\" id=\"addons-7\" name=\"addons\" value=\"bread\">BreadStick - $1 <br>\n                    <input type=\"checkbox\" id=\"addons-8\" name=\"addons\" value=\"crawfish\">6 Crawfish - $5 <br>\n                    <input type=\"checkbox\" id=\"addons-9\" name=\"addons\" value=\"potato\">Potatoes - $2 <br>\n                    <input type=\"checkbox\" id=\"addons-10\" name=\"addons\" value=\"sour\">Sour Cream - $1 <br>\n                </div>-->\n                <br>\n                <input id=\"submit-button\" type=\"submit\" value=\"Add To Cart\">\n            </form>\n        </div>\n    </div>\n    ";
+function Order() {
+    return "\n    <div id=\"order-container\">\n        <div id=\"container\">\n            <div id=\"container-wrapper\">\n                <h1>Pick Your Platter</h1>\n                <div class=\"container-meal\">\n                    <div class=\"card\" id=\"Meal-1\">\n                        <div class=\"content\">\n                            <h4>One Piece Platter</h4>\n                            <p>Select a single piece of meat.</p>\n                            <input type=\"radio\" name=\"meal\" value=\"1\" hidden>\n                        </div>\n                    </div>\n                    <div class=\"card\" id=\"Meal-2\">\n                        <div class=\"content\">\n                            <h4>One Piece Platter</h4>\n                            <p>Select from 2 pieces of meat.</p>\n                            <input type=\"radio\" name=\"meal\" value=\"2\" hidden>\n                        </div>\n                    </div>\n                    <div class=\"card\" id=\"Meal-3\">\n                        <div class=\"content\">\n                            <h4>One Piece Platter</h4>\n                            <p>Select from 3 pieces of meat.</p>\n                            <input type=\"radio\" name=\"meal\" value=\"3\" hidden>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"container-meat\"></div>\n            <div class=\"container-sauces\"></div>\n            <button id=\"AddToOrder\" hidden>Add To Order</button>      \n        </div>\n        \n    </div>\n   \n    ";
 }
 },{}],"components\\Pages\\index.js":[function(require,module,exports) {
 'use strict';
@@ -19229,7 +19268,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = {
-    'links': ['info', 'promo', 'menu', 'order'],
+    'links': ['info', 'order'],
     'title': 'Welcome To The Home Page',
     'body': 'info'
 };
@@ -19336,7 +19375,7 @@ var Store = function () {
 }();
 
 exports.default = new Store(State);
-},{"./index":"store\\index.js"}],"js\\Greeter.js":[function(require,module,exports) {
+},{"./index":"store\\index.js"}],"js\\Order1.js":[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19344,89 +19383,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Greeter = function () {
-    function Greeter() {
-        var _this = this;
-
-        _classCallCheck(this, Greeter);
-
-        this.input = document.createElement('input');
-        this.element = document.createElement('div');
-
-        this.input.placeholder = "What's your name?";
-        this.input.addEventListener('keyup', function () {
-            return console.log(_this.input.value);
-        });
-        this.element.appendChild(this.input);
-    }
-
-    _createClass(Greeter, [{
-        key: 'render',
-        value: function render(parent) {
-            parent.appendChild(this.element);
-        }
-    }]);
-
-    return Greeter;
-}();
-
-exports.default = Greeter;
-},{}],"js\\Meal.js":[function(require,module,exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Meal = function () {
-    function Meal(mealType, meatTypes, sauceTypes) {
-        _classCallCheck(this, Meal);
-
-        this.mealType = document.createElement('h4');
-        this.meatType = document.createElement('h4');
-        this.sauceType = document.createElement('h4');
-        this.element = document.createElement('div');
-        this.element.className = 'meal-order';
-
-        this.mealType.innerHTML = mealType;
-        this.meatType.innerHTML = meatTypes.join(', ');
-        this.sauceType.innerHTML = sauceTypes;
-
-        this.element.appendChild(this.mealType);
-        this.element.appendChild(this.meatType);
-        this.element.appendChild(this.sauceType);
-    }
-
-    _createClass(Meal, [{
-        key: 'render',
-        value: function render(parent) {
-            parent.appendChild(this.element);
-        }
-    }]);
-
-    return Meal;
-}();
-
-exports.default = Meal;
-},{}],"js\\Order.js":[function(require,module,exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _Meal = require('../js/Meal');
-
-var _Meal2 = _interopRequireDefault(_Meal);
 
 var _axios = require('axios');
 
@@ -19436,223 +19392,277 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/**
- * TODO: allow user to change meat selection options, currently that have to click the meal in order to reset options
- */
-
-var Order = function () {
-    function Order(root) {
-        _classCallCheck(this, Order);
+var Order1 = function () {
+    function Order1(root) {
+        _classCallCheck(this, Order1);
 
         this.root = root;
-        this.totalMeatPrice = 0;
-        this.totalSaucePrice = 0;
-        this.totalCost = root.querySelector('#current-order > h1');
-        this.meatOptionsArray = [root.querySelector('#meat-selection-1'), root.querySelector('#meat-selection-2'), root.querySelector('#meat-selection-3'), root.querySelector('#meat-selection-4')];
-        this.meatVolumeArray = [root.querySelector('#meat-volume-1'), root.querySelector('#meat-volume-2'), root.querySelector('#meat-volume-3')];
-        this.meatPrices = [25, 40, 55];
-        this.sauceElementArray = [root.querySelector('#sauce-1'), root.querySelector('#sauce-2'), root.querySelector('#sauce-3')];
-        this.sauceCost = [5, 0, 1];
-        this.limit = 0;
-        this.mealType;
-        this.meatType = [];
-        this.sauceType;
+        this.containerMealDom = this.root.querySelector('div.container-meal');
+        this.containerMeatDom = this.root.querySelector('div.container-meat');
+        this.Meals = Array.from(this.root.querySelectorAll('div.container-meal > .card'));
+        this.meatLimit = 0;
+        this.lastMeatSelected;
 
-        this.attachListeners();
+        this.attachListener();
     }
 
-    _createClass(Order, [{
-        key: 'attachListeners',
-        value: function attachListeners() {
+    _createClass(Order1, [{
+        key: 'attachListener',
+        value: function attachListener() {
+            this.attachMealListeners();
+            this.attachOrderButtonListener();
+        }
+    }, {
+        key: 'attachMealListeners',
+        value: function attachMealListeners() {
+            this.attachMeatSection();
+        }
+    }, {
+        key: 'attachOrderButtonListener',
+        value: function attachOrderButtonListener() {
             var _this = this;
 
-            this.meatVolumeArray.forEach(function (meatElement) {
-                meatElement.addEventListener('click', function (event) {
-                    return _this.selectMealSize(event);
-                });
-            });
-            this.meatOptionsArray.forEach(function (meatOption) {
-                meatOption.addEventListener('click', function (event) {
-                    return _this.selectMeats(event);
-                });
-            });
-            this.sauceElementArray.forEach(function (sauceElement) {
-                sauceElement.addEventListener('click', function (event) {
-                    return _this.selectSauce(event);
-                });
-            });
-            this.root.querySelector('input#submit-button').addEventListener('click', function (event) {
+            this.root.querySelector('#AddToOrder').addEventListener('click', function () {
+                var inputs = Array.from(_this.root.querySelectorAll('input'));
                 var meal;
+                var meat;
+                var sauce;
 
-                event.preventDefault();
+                /* Axios
+                    .get('http://radiant-plateau-57525.herokuapp.com/greeting?name=Travis')
+                    .then((response) => console.log(response.data[0].content)); */
 
-                _this.root.querySelectorAll('.meat-selection-divs').forEach(function (element) {
-                    if (element.querySelector('input').checked) {
-                        _this.meatType.push(element.querySelector('p').textContent);
+                inputs.forEach(function (input) {
+                    switch (input.name) {
+                        case 'meal':
+                            meal = input.value;
+                            break;
+                        case 'meat':
+                            meat = input.value;
+                            break;
+                        case 'sauce':
+                            sauce = input.value;
+                            break;
                     }
                 });
 
-                meal = new _Meal2.default(_this.mealType, _this.meatType, _this.sauceType);
-                meal.render(_this.root.querySelector('#meal-list'));
-            });
-            this.root.querySelector('#current-order button').addEventListener('click', function (event) {
-                alert(event.target);
-                _axios2.default.get('https://radiant-plateau-57525.herokuapp.com/greeting?name=Travis').then(function (response) {
-                    return console.log(response.data);
+                _axios2.default.get('https://radiant-plateau-57525.herokuapp.com/order?meal=' + meal + '&meat=' + meat + '&sauce=' + sauce).then(function (response) {
+                    response.data.forEach(function (order) {
+                        /* console.log(order.meal);
+                        console.log(order.meat);
+                        console.log(order.meal); */
+                        _this.order = document.createElement('div');
+                        _this.order.setAttribute('id', 'border');
+
+                        _this.mealHeader = document.createElement('h4');
+                        _this.mealHeaderText = document.createTextNode(order.meal + ' Meat Order');
+                        _this.mealHeader.appendChild(_this.mealHeaderText);
+
+                        _this.meatHeader = document.createElement('h5');
+                        _this.meatHeaderText = document.createTextNode(order.meat);
+                        _this.meatHeader.appendChild(_this.meatHeaderText);
+
+                        _this.sauceHeader = document.createElement('h5');
+                        _this.sauceHeaderText = document.createTextNode(order.sauce);
+                        _this.sauceHeader.appendChild(_this.sauceHeaderText);
+
+                        _this.order.appendChild(_this.mealHeader);
+                        _this.order.appendChild(_this.meatHeader);
+                        _this.order.appendChild(_this.sauceHeader);
+
+                        _this.root.querySelector('#container').appendChild(_this.order);
+                    });
                 });
             });
         }
     }, {
-        key: 'testfunction',
-        value: function testfunction(event) {
-            var test = Array.from(this.root.querySelectorAll('.meat-selections-checkbox'));
-            var test2 = test.filter(function (meatSel) {
-                return meatSel.checked;
-            });
-
-            if (test2.length > this.limit) {
-                event.target.checked = false;
-            }
-        }
-    }, {
-        key: 'selectMealSize',
-        value: function selectMealSize(event) {
+        key: 'attachMeatSection',
+        value: function attachMeatSection() {
             var _this2 = this;
 
-            var meatVolume = event.target.id.substr(event.target.id.length - 1);
+            this.Meals.forEach(function (meal) {
+                return meal.addEventListener('click', function (event) {
+                    var container = _this2.root.querySelector('#container');
 
-            this.meatVolumeArray.forEach(function (meat) {
-                if (meat.id === event.target.id) {
-                    meat.style.backgroundColor = 'green';
-                    _this2.root.querySelector('input#meatnum-' + meatVolume).checked = true;
+                    _this2.highlightMeal(event);
 
-                    _this2.totalMeatPrice = _this2.meatPrices[meatVolume - 1];
-                    _this2.updatePriceDisplay();
-                    _this2.limit = meatVolume;
-
-                    Array.from(_this2.root.querySelectorAll('input.meat-selections-checkbox')).forEach(function (meatCheckbox) {
-                        meatCheckbox.checked = false;
-                    });
-
-                    _this2.mealType = meat.querySelector('p').textContent;
+                    container.replaceChild(_this2.renderMeatSelection(event), container.childNodes[3]);
+                });
+            }, true);
+        }
+    }, {
+        key: 'highlightMeal',
+        value: function highlightMeal(event) {
+            this.Meals.forEach(function (meal) {
+                if (event.currentTarget === meal) {
+                    meal.style.backgroundColor = '#ccc';
+                    meal.querySelector('input').checked = true;
                 } else {
-                    meat.style.backgroundColor = '#ddd';
-                    _this2.meatOptionsArray.forEach(function (singleMeat) {
-                        singleMeat.style.backgroundColor = '#ddd';
-                    });
+                    meal.style.backgroundColor = '#fff';
                 }
             });
         }
     }, {
-        key: 'selectMeats',
-        value: function selectMeats(event) {
+        key: 'highlightMeat',
+        value: function highlightMeat(limit, event) {
             var _this3 = this;
 
-            var limitIsMet = this.isLimitMet();
-            var meatSelect = event.target.id.substr(event.target.id.length - 1);
-
-            if (limitIsMet) {
-                console.log('limitIsMet');
-            } else {
-                this.meatOptionsArray.forEach(function (meat) {
-                    if (meat.id === event.target.id) {
-                        meat.style.backgroundColor = 'green';
-                        _this3.root.querySelector('input#meat-sel-' + meatSelect).checked = true;
+            Array.from(this.root.querySelectorAll('#container-meat > div.card')).forEach(function (meat) {
+                if (meat == event.currentTarget) {
+                    if (meat.querySelector('input').checked) {
+                        meat.querySelector('input').checked = false;
+                        meat.style.backgroundColor = '#fff';
+                    } else {
+                        meat.querySelector('input').checked = true;
+                        meat.style.backgroundColor = '#ccc';
                     }
-                });
-            }
-        }
-    }, {
-        key: 'isLimitMet',
-        value: function isLimitMet() {
-            var test = Array.from(this.root.querySelectorAll('.meat-selections-checkbox'));
-            var test2 = test.filter(function (meatSel) {
-                return meatSel.checked;
-            });
-
-            if (test2.length >= this.limit) {
-                return true;
-            }
-
-            return false;
-        }
-    }, {
-        key: 'selectSauce',
-        value: function selectSauce(event) {
-            var _this4 = this;
-
-            var sauceIdentifier = event.target.id.substr(event.target.id.length - 1);
-
-            this.sauceElementArray.forEach(function (sauce) {
-                if (sauce.id === event.target.id) {
-                    sauce.style.backgroundColor = 'green';
-                    _this4.root.querySelector('#sauce-selection-' + sauceIdentifier).checked = true;
-                    _this4.totalSaucePrice = _this4.sauceCost[sauceIdentifier - 1];
-                    _this4.updatePriceDisplay();
-                    _this4.sauceType = sauce.querySelector('p').textContent;
-                } else {
-                    sauce.style.backgroundColor = '#ddd';
+                    if (Array.from(_this3.root.querySelectorAll('#container-meat > div.card > input')).filter(function (input) {
+                        return input.checked;
+                    }).length > limit) {
+                        meat.querySelector('input').checked = false;
+                        meat.style.backgroundColor = '#fff';
+                    }
                 }
             });
         }
     }, {
-        key: 'updatePriceDisplay',
-        value: function updatePriceDisplay() {
-            var totalPrice = this.totalMeatPrice + this.totalSaucePrice;
+        key: 'renderMeatSelection',
+        value: function renderMeatSelection(event) {
+            var _this4 = this;
 
-            this.totalCost.innerHTML = totalPrice;
+            var mealNumber = event.currentTarget.id.substr(event.currentTarget.id.length - 1);
+
+            this.meats = ['Garlic Crab Cluster', 'Lobster Tail', '1lb Shrimp', '1lb CrawFish'];
+
+            this.containerWrapper = document.createElement('div');
+            this.containerWrapper.setAttribute('id', 'container-wrapper');
+
+            this.largeHeader = document.createElement('h1');
+
+            if (mealNumber > 1) {
+                this.largeHeaderText = document.createTextNode('Select from ' + mealNumber + ' pieces of Seafood');
+            } else {
+                this.largeHeaderText = document.createTextNode('Select ' + mealNumber + ' piece of Seafood');
+            }
+
+            this.largeHeader.appendChild(this.largeHeaderText);
+
+            this.containerMeat = document.createElement('div');
+            this.containerMeat.setAttribute('id', 'container-meat');
+
+            this.containerWrapper.appendChild(this.largeHeader);
+
+            this.meats.forEach(function (meat) {
+                _this4.header = document.createElement('h4');
+                _this4.meat = document.createTextNode(meat);
+                _this4.header.appendChild(_this4.meat);
+
+                _this4.checkbox = document.createElement('input');
+                _this4.checkbox.type = 'checkbox';
+                _this4.checkbox.name = 'meat';
+                _this4.checkbox.hidden = true;
+                _this4.checkbox.value = meat;
+
+                _this4.card = document.createElement('div');
+                _this4.card.setAttribute('class', 'card');
+                _this4.card.appendChild(_this4.header);
+                _this4.card.appendChild(_this4.checkbox);
+
+                _this4.containerMeat.appendChild(_this4.attachSauceSection(_this4.card, mealNumber));
+            });
+
+            this.containerWrapper.appendChild(this.containerMeat);
+
+            return this.containerWrapper;
+        }
+    }, {
+        key: 'attachSauceSection',
+        value: function attachSauceSection(card, limit) {
+            var _this5 = this;
+
+            card.addEventListener('click', function (event) {
+                var container = _this5.root.querySelector('#container');
+
+                _this5.highlightMeat(limit, event);
+
+                if (!_this5.root.querySelector('#container-sauce')) {
+                    container.replaceChild(_this5.renderSauceSelection(), container.childNodes[5]);
+                }
+            });
+
+            return card;
+        }
+    }, {
+        key: 'renderSauceSelection',
+        value: function renderSauceSelection() {
+            var _this6 = this;
+
+            this.sauces = ['Lemon Garlic', 'Garlic Butter', 'Hot&Spicy'];
+
+            this.containerWrapper = document.createElement('div');
+            this.containerWrapper.setAttribute('id', 'container-wrapper');
+
+            this.largeHeader = document.createElement('h1');
+            this.largeHeaderText = document.createTextNode('Select your Sauce');
+            this.largeHeader.appendChild(this.largeHeaderText);
+
+            this.containerSauce = document.createElement('div');
+            this.containerSauce.setAttribute('id', 'container-sauce');
+
+            this.containerWrapper.appendChild(this.largeHeader);
+
+            this.sauces.forEach(function (sauce) {
+                _this6.header = document.createElement('h4');
+                _this6.sauce = document.createTextNode(sauce);
+                _this6.header.appendChild(_this6.sauce);
+
+                _this6.card = document.createElement('div');
+                _this6.card.setAttribute('class', 'card');
+                _this6.card.appendChild(_this6.header);
+                _this6.containerSauce.appendChild(_this6.card);
+
+                _this6.input = document.createElement('input');
+                _this6.input.type = 'radio';
+                _this6.input.name = 'sauce';
+                _this6.input.hidden = true;
+                _this6.input.value = sauce;
+
+                _this6.card.appendChild(_this6.input);
+
+                _this6.card.addEventListener('click', function (event) {
+                    _this6.highlightSauce(event);
+                    _this6.showAddButton();
+                });
+            });
+
+            this.containerWrapper.appendChild(this.containerSauce);
+
+            return this.containerWrapper;
+        }
+    }, {
+        key: 'highlightSauce',
+        value: function highlightSauce(event) {
+            Array.from(this.root.querySelectorAll('#container-sauce > div.card')).forEach(function (sauce) {
+                if (event.currentTarget === sauce) {
+                    sauce.style.backgroundColor = '#ccc';
+                    sauce.querySelector('input').checked = true;
+                } else {
+                    sauce.style.backgroundColor = '#fff';
+                }
+            });
+        }
+    }, {
+        key: 'showAddButton',
+        value: function showAddButton() {
+            this.root.querySelector('button#AddToOrder').style.display = 'block';
         }
     }]);
 
-    return Order;
+    return Order1;
 }();
 
-exports.default = Order;
-
-/* var meal = {};
-
-$(document).ready(function(){
-    var form = $('#form');
-    form.submit(function (event){
-        event.preventDefault();
-        $("h3").html("Hello");
-        var Array = $(event.target).children();
-        var Array2 = $("#form").serialize().split("&").map((element) => element.split("="));        var tempArray = [];
-
-        for(let i = 0; i < Array2.length; i++) {
-
-            if (Array2[i][0] === "meat"){
-                console.log(true);
-                tempArray.push(Array2[i][1]);
-            } else {
-                meal[Array2[i][0]] = Array2[i][1];
-            }
-        }
-        meal['meat'] = tempArray;
-        $.post('order/ajax', meal, function() {
-            addToCart(meal);
-        })
-
-    });
-
-    var cart = $('#header > i');
-
-    cart.click(function() {
-        $('#current-order').toggle();
-    });
-
-    function addToCart(meal){
-        var template = `
-        <h2>Meat Size = ${meal.meatnum}</h2>
-            <h2>Meat Selected = ${meal.meat}</h2>
-            <h2>Sauces = ${meal.sauce}</h2>
-        `
-        $('#current-order').append(template);
-    }
-});
-
-*/
-},{"../js/Meal":"js\\Meal.js","axios":"node_modules\\axios\\index.js"}],"index.js":[function(require,module,exports) {
+exports.default = Order1;
+},{"axios":"node_modules\\axios\\index.js"}],"index.js":[function(require,module,exports) {
 'use strict';
 
 var _axios = require('axios');
@@ -19683,11 +19693,7 @@ var _store = require('./store/store');
 
 var _store2 = _interopRequireDefault(_store);
 
-var _Greeter = require('./js/Greeter');
-
-var _Greeter2 = _interopRequireDefault(_Greeter);
-
-var _Order = require('./js/Order');
+var _Order = require('./js/Order1');
 
 var _Order2 = _interopRequireDefault(_Order);
 
@@ -19695,19 +19701,51 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var root = document.querySelector('#root');
 var router = new _navigo2.default(window.location.origin);
-var greeter = new _Greeter2.default(_store2.default.dispatch.bind(_store2.default));
 
 function render() {
     var state = _store2.default.getState();
     var order;
 
-    root.innerHTML = '\n    ' + (0, _Landing2.default)() + '\n    ' + (0, _Navigation2.default)(state[state.active]) + '\n    ' + (0, _Content2.default)(state) + '\n    ' + (0, _Footer2.default)() + '\n    ';
+    root.innerHTML = '\n    ' + (0, _Navigation2.default)(state[state.active]) + '\n    ' + (0, _Landing2.default)(state) + '\n    ' + (0, _Content2.default)(state) + '\n    ' + (0, _Footer2.default)() + '\n    ';
+
+    document.querySelector('#landing').style.height = window.innerWidth - 152 + 'px';
+
+    window.addEventListener('scroll', function () {
+        window.requestAnimationFrame(function () {
+            var scrolled = window.pageYOffset / 100;
+
+            if (window.innerWidth > 768) {
+                var background = document.querySelector('#landing');
+                var promo = document.querySelector('#promo');
+
+                promo.style.backgroundPosition = '50% ' + scrolled * 4 + '%';
+                background.style.backgroundPosition = '50% ' + scrolled * 8 + '%';
+            }
+
+            /* if((scrolled * 4) > 23.5){
+                document.querySelector('#landing > a').style.visibility = 'hidden';
+            }
+            else if((scrolled * 4) < 23.5){
+                document.querySelector('#landing > a').style.visibility = 'visible';
+            } */
+        });
+    });
+
+    window.addEventListener('resize', function () {
+        window.requestAnimationFrame(function () {
+            var landing = document.querySelector('#landing');
+
+            if (window.innerWidth < 768) {
+                landing.style.height = window.innerWidth - 152 + 'px';
+            } else {
+                landing.style.height = '1000px';
+            }
+        });
+    });
 
     if (state.active === 'order') {
         order = new _Order2.default(root);
     }
-
-    greeter.render(root);
 
     router.updatePageLinks();
 }
@@ -19732,12 +19770,8 @@ _axios2.default.get('https://api.openweathermap.org/data/2.5/weather?zip=63136&a
     });
 });
 
-/* Axios
-    .get('https://radiant-plateau-57525.herokuapp.com/greeting?name=Travis')
-    .then((response) => console.log(response.data)); */
-
 _store2.default.addListener(render);
-},{"axios":"node_modules\\axios\\index.js","navigo":"node_modules\\navigo\\lib\\navigo.min.js","./components/Navigation":"components\\Navigation.js","./components/Footer":"components\\Footer.js","./components/Landing":"components\\Landing.js","./components/Content":"components\\Content.js","./store/store":"store\\store.js","./js/Greeter":"js\\Greeter.js","./js/Order":"js\\Order.js"}],"..\\..\\..\\..\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
+},{"axios":"node_modules\\axios\\index.js","navigo":"node_modules\\navigo\\lib\\navigo.min.js","./components/Navigation":"components\\Navigation.js","./components/Footer":"components\\Footer.js","./components/Landing":"components\\Landing.js","./components/Content":"components\\Content.js","./store/store":"store\\store.js","./js/Order1":"js\\Order1.js"}],"..\\..\\..\\..\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -19766,7 +19800,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '49981' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '52763' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

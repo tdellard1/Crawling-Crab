@@ -17,6 +17,9 @@ class Meal{
     render(parent){
         parent.appendChild(this.element);
     }
+    getMealType(){
+        return this.mealType.textContent;
+    }
 }
 
 export default Meal;

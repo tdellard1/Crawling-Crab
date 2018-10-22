@@ -5,30 +5,62 @@ import Footer from './components/Footer';
 import Landing from './components/Landing';
 import Content from './components/Content';
 import store from './store/store';
-import Greeter from './js/Greeter';
-import Order from './js/Order';
+import Order from './js/Order1';
 
 var root = document.querySelector('#root');
 var router = new Navigo(window.location.origin);
-var greeter = new Greeter(store.dispatch.bind(store));
-
 
 function render(){
     var state = store.getState();
     var order;
     
+    
     root.innerHTML = `
-    ${Landing()}
     ${Navigation(state[state.active])}
+    ${Landing(state)}
     ${Content(state)}
     ${Footer()}
     `;
     
+    document.querySelector('#landing').style.height = (window.innerWidth - 152) + 'px';
+    
+    window.addEventListener('scroll', () => {
+        window.requestAnimationFrame(() => {
+            var scrolled = window.pageYOffset / 100;
+
+            if(window.innerWidth > 768){
+                const background = document.querySelector('#landing');
+                const promo = document.querySelector('#promo');
+
+                promo.style.backgroundPosition = '50% ' + (scrolled * 4)  + '%';
+                background.style.backgroundPosition = '50% ' + (scrolled * 8) + '%';
+            }
+
+            /* if((scrolled * 4) > 23.5){
+                document.querySelector('#landing > a').style.visibility = 'hidden';
+            }
+            else if((scrolled * 4) < 23.5){
+                document.querySelector('#landing > a').style.visibility = 'visible';
+            } */
+        });
+    });
+
+    window.addEventListener('resize', () => {
+        window.requestAnimationFrame(() => {
+            var landing = document.querySelector('#landing');
+
+            if(window.innerWidth < 768){
+                landing.style.height = (window.innerWidth - 152) + 'px';
+            }
+            else{
+                landing.style.height = '1000px';
+            }
+        });
+    });
+
     if(state.active === 'order'){
         order = new Order(root);
     }
-    
-    greeter.render(root);
     
     router.updatePageLinks();
 }
@@ -52,10 +84,5 @@ Axios
             return state;
         });
     });
-
-/* Axios
-    .get('https://radiant-plateau-57525.herokuapp.com/greeting?name=Travis')
-    .then((response) => console.log(response.data)); */
-
 
 store.addListener(render);

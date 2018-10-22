@@ -7,6 +7,7 @@ import Axios from 'axios';
 
 class Order{
     constructor(root){
+        this.meal;
         this.root = root;
         this.totalMeatPrice = 0;
         this.totalSaucePrice = 0;
@@ -34,8 +35,6 @@ class Order{
             sauceElement.addEventListener('click', (event) => this.selectSauce(event));
         });
         this.root.querySelector('input#submit-button').addEventListener('click', (event) => {
-            var meal;
-
             event.preventDefault();
 
             this.root.querySelectorAll('.meat-selection-divs').forEach((element) => {
@@ -44,13 +43,13 @@ class Order{
                 }
             });
             
-            meal = new Meal(this.mealType, this.meatType, this.sauceType);
-            meal.render(this.root.querySelector('#meal-list'));
+            this.meal = new Meal(this.mealType, this.meatType, this.sauceType);
+            this.meal.render(this.root.querySelector('#meal-list'));
         });
         this.root.querySelector('#current-order button').addEventListener('click', (event) => {
             alert(event.target);
             Axios
-                .get('https://radiant-plateau-57525.herokuapp.com/greeting?name=Travis')
+                .get(`https://radiant-plateau-57525.herokuapp.com/order?meal=${this.mealType}&meat=${this.meatType}&sauce=${this.sauceType}`)
                 .then((response) => console.log(response.data));
         });
     }
